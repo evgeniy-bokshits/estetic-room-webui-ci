@@ -336,7 +336,7 @@ __webpack_require__.r(__webpack_exports__);
 let WebService = class WebService {
     constructor(http) {
         this.http = http;
-        this.BASE_URL = 'https://localhost:44362/api/';
+        this.BASE_URL = 'http://service-estetic-room.azurewebsites.net/api/';
         this.messages = [];
     }
     getMessages() {

@@ -96,7 +96,8 @@ let AppComponent = class AppComponent {
         this.title = 'Estetic Room :) ';
     }
     onPosted(message) {
-        this.messages.messages.push(message);
+        console.log(message);
+        this.messages.messages1.push(message);
     }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -197,7 +198,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngFor=\"let message of messages\">\r\n  <mat-card style=\"margin:8px;\">\r\n    <mat-card-title>\r\n      {{message.owner}}\r\n    </mat-card-title>\r\n    <mat-card-content>\r\n      {{message.text}}\r\n    </mat-card-content>\r\n  </mat-card>\r\n</div>\r\n<button mat-raised-button color=\"accent\">test</button>\r\n"
+module.exports = "<div *ngFor=\"let message of webService.messages\">\r\n  <mat-card style=\"margin:8px;\">\r\n    <mat-card-title>\r\n      {{message.owner}}\r\n    </mat-card-title>\r\n    <mat-card-content>\r\n      {{message.text}}\r\n    </mat-card-content>\r\n  </mat-card>\r\n</div>\r\n<button mat-raised-button color=\"accent\">test</button>\r\n"
 
 /***/ }),
 
@@ -220,12 +221,12 @@ __webpack_require__.r(__webpack_exports__);
 let MessagesComponent = class MessagesComponent {
     constructor(webService) {
         this.webService = webService;
+        this.messages1 = [];
     }
     ngOnInit() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             // tslint:disable-next-line:prefer-const
-            let response = yield this.webService.getMessages();
-            this.messages = response;
+            this.messages1 = yield this.webService.getMessages();
         });
     }
 };
@@ -260,7 +261,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n  <mat-card class=\"card\">\r\n    <mat-card-content>\r\n      <mat-form-field>\r\n        <input [(ngModel)]=\"message.owner\" matInput placeholder=\"Name\">\r\n      </mat-form-field>\r\n      <mat-form-field>\r\n        <textarea [(ngModel)]=\"message.text\" matInput placeholder=\"Message\"></textarea>\r\n      </mat-form-field>\r\n      <mat-card-actions>\r\n          <button (click)=\"post()\" mat-raised-button color=\"accent\">Post</button>\r\n      </mat-card-actions>\r\n    </mat-card-content>\r\n  </mat-card>\r\n"
+module.exports = "\n  <mat-card class=\"card\">\n    <mat-card-content>\n      <mat-form-field>\n        <input [(ngModel)]=\"message.owner\" matInput placeholder=\"Name\">\n      </mat-form-field>\n      <mat-form-field>\n        <textarea [(ngModel)]=\"message.text\" matInput placeholder=\"Message\"></textarea>\n      </mat-form-field>\n      <mat-card-actions>\n          <button (click)=\"post()\" mat-raised-button color=\"accent\">Post</button>\n      </mat-card-actions>\n    </mat-card-content>\n  </mat-card>\n"
 
 /***/ }),
 
@@ -294,7 +295,7 @@ let NewMessageComponent = class NewMessageComponent {
     }
     post() {
         this.webService.postMessage(this.message);
-        this.onPosted.emit(this.message.toString());
+        this.onPosted.emit(this.message);
     }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -335,10 +336,16 @@ __webpack_require__.r(__webpack_exports__);
 let WebService = class WebService {
     constructor(http) {
         this.http = http;
-        this.BASE_URL = 'https://service-estetic-room.azurewebsites.net/api/';
+        this.BASE_URL = 'https://localhost:44362/api/';
+        this.messages = [];
     }
     getMessages() {
-        return this.http.get(this.BASE_URL + '/messages').toPromise();
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            // tslint:disable-next-line:prefer-const
+            let response = yield this.http.get(this.BASE_URL + '/messages').toPromise();
+            this.messages = response;
+            return response;
+        });
     }
     postMessage(message) {
         return this.http.post(this.BASE_URL + '/messages', message).toPromise();
@@ -414,7 +421,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Yauheni_Bokshyts\Desktop\Estetic Room\estetic-room-webui\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Yauheni Bokshyts\Desktop\Estetic Room Prj\estetic-room-webui\src\main.ts */"./src/main.ts");
 
 
 /***/ })

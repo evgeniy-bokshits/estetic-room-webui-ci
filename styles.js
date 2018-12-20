@@ -557,7 +557,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Yauheni_Bokshyts\Desktop\Estetic Room\estetic-room-webui\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! C:\Users\Yauheni Bokshyts\Desktop\Estetic Room Prj\estetic-room-webui\src\styles.css */"./src/styles.css");
 
 
 /***/ })
